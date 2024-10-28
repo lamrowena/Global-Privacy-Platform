@@ -6,7 +6,7 @@ This document provides technical implementation guidelines related to the Global
 ## Table of Contents
 
 #### [1. Introduction to the Global Privacy Platform](#1-introduction-to-the-global-privacy-platform)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[1.1 Getting Started](#11-getting-started)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[1.1 Getting Started](#1.1)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[1.2 Glossary of Terms](#12-glossary-of-terms)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[1.3 Core GPP Specifications](#13-core-gpp-specifications)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[1.4 Section Specifictions - Understanding Sections and Sub-sections](#14-section-specifications---understanding-sections-and-sub-sections)<br>
@@ -15,7 +15,7 @@ This document provides technical implementation guidelines related to the Global
 &nbsp;&nbsp;&nbsp;&nbsp;[2.1 About Consent Management Platforms (CMPs)](#21-about-consent-management-platforms-cmps)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[2.2 Deciding Which Sections to Support](#22-deciding-which-sections-to-support)<br>
 
-#### [3. CMP Guidelines](#3-cmp-guidelines)
+#### [3. CMP Guidelines](#3)
 &nbsp;&nbsp;&nbsp;&nbsp;[3.1 CMP IDs](#31-cmp-ids)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[3.2 Presentation of User Choices](#32-presentation-of-user-choices)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[3.3 Supported APIs](#33-supported-apis)<br>
