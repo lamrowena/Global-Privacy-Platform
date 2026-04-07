@@ -11,7 +11,7 @@
     <td><strong>Comments</strong></td>
 </tr>
 <tr>
-<td>April 2025</td>
+<td>April 2026</td>
     <td>1.0</td>
     <td>Updated SubSections field in Section header to never include Core subsection</td>
 </tr>
