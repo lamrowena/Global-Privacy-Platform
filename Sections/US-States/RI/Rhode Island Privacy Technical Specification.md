@@ -11,6 +11,11 @@
     <td><strong>Comments</strong></td>
 </tr>
 <tr>
+<td>April 2026</td>
+    <td>1.0</td>
+    <td>Updated SubSections field in Section header to never include Core subsection</td>
+</tr>
+<tr>
 <td>October 2025</td>
     <td>1.0</td>
     <td>Version 1.0 public comment</td>
@@ -67,7 +72,7 @@
       <td>SubSections</td>
       <td>Range (Fibonacci)</td>
       <td>
-        <p>List of subsection ids that are contained in this section. The IDs must be represented in the order the related subsections appear in the string. Core subsections must always be first and have an ID of 0.</p>
+        <p>List of subsection ids that are contained in this section. The IDs must be represented in the order the related subsections appear in the string. The Core subsection is required and always included first, so its ID (zero) is not included in the subsection IDs list.</p>
       </td>
     </tr>
   </table>
