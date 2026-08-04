@@ -43,7 +43,7 @@ Updates were made to existing IAB Tech Lab standards to support the Global Priva
 
 GPP assumes the use of OpenRTB 2.x. 
 
-- Like other existing privacy signals (TCF and USPrivacy), the GPP string is also able to be transported via OpenRTB. This is included in the Regs object. See the [OpenRTB 2.x specifications](https://github.com/InteractiveAdvertisingBureau/openrtb/tree/master/extensions/community_extensions) for details.
+- Like other existing privacy signals (TCF and USPrivacy), the GPP string is also able to be transported via OpenRTB. This is included in the Regs object. See the [OpenRTB 2.x specifications](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md#objectregs) for details.
 
 ### About the Global Privacy Protocol
 
@@ -190,7 +190,7 @@ The following details provide information on creating, storing, and managing a G
 <li>For sections that use a different encoding mechanism, ensure that the data is websafe and does not include the “~” (tilde) character or the "." (dot) character.</li>
 </ul>
 </li>
-<li><b>Create header section.</b> See examples of the <a href="https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/consent-string-clarifications/Core/Consent%20String%20Specification.md?pr=%2FInteractiveAdvertisingBureau%2FGlobal-Privacy-Platform%2Fpull%2F83#header-examples">header section</a> below.
+<li><b>Create header section.</b> See examples of the <a href="https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Core/Consent%20String%20Specification.md#header-examples">header section</a> below.
 	<ol type=1>
 		<li>Create a bit representation of the GPP header section including all Section IDs for discrete sections in a sorted order.</li>
 		<li>Add padding (0) on the right to get to a total bit length that is a multiple of 6 bits.</li>
@@ -879,7 +879,7 @@ Using the same cases as in the [Header Examples](#header) above, the following e
 
 ## Signal Integrity
 
-As part of the first version of GPP, signal integrity will be accomplished in concert with the [Accountability Platform.](https://iabtechlab.com/wp-content/uploads/2021/03/iabtechlab_accountability_platform_rfc_2021_march.pdf) The Global Privacy Working Group is committed to introducing signal integrity technology for GPP in future versions. 
+As part of the first version of GPP, signal integrity will be accomplished in concert with the [Accountability Platform.](https://github.com/InteractiveAdvertisingBureau/Accountability-Platform) The Global Privacy Working Group is committed to introducing signal integrity technology for GPP in future versions. 
 
 
 ## GPP Identifier <a name="gppstring"></a>

@@ -115,7 +115,7 @@ Requirements for the interface:
 ### What required API commands must a CMP support? <a name="javascript"></a>
 
 
-All CMPs must support all generic commands. Generic commands are commands that can be used independent of [section specifications](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/SectionInformation.md). All generic commands must always be executed immediately without any asynchronous logic and call the supplied callback function immediately. The generic commands are: [‘ping’](#ping), [‘addEventListener’](#addeventlistener), [‘removeEventListener’](#removeeventlistener), [‘hasSection’](#hassection), [‘getSection’](#getsection), and [‘getField’](#getfield). 
+All CMPs must support all generic commands. Generic commands are commands that can be used independent of [section specifications](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/Section%20Information.md). All generic commands must always be executed immediately without any asynchronous logic and call the supplied callback function immediately. The generic commands are: [‘ping’](#ping), [‘addEventListener’](#addeventlistener), [‘removeEventListener’](#removeeventlistener), [‘hasSection’](#hassection), [‘getSection’](#getsection), and [‘getField’](#getfield). 
 
 
 ### What is a CMP ID?
