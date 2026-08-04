@@ -1,16 +1,16 @@
-# Global Privacy Platform
+# Global Privacy Protocol
 
 
-Hosted in this repository are the technical specifications for the IAB Global Privacy Platform (GPP). The relevant specifications: 
+Hosted in this repository are the technical specifications for the IAB Global Privacy Protocol (GPP). The relevant specifications: 
 
-- Global Privacy Platform String
+- Global Privacy Protocol String
 - Consent Management API
 - Data Activities and Manifests
 - Supported Sections
 
-### About the Global Privacy Platform
+### About the Global Privacy Protocol
 
-The Global Privacy Platform (GPP) has the objective to enable all parties in the digital advertising chain to comply with regional privacy regulations more easily. It is a transport layer that communicates user consent and preference signaling throughout the digital supply chain that supports existing consent formats and is flexible enough to support new markets with unique needs. IAB Tech Lab stewards the development of these technical specifications.
+The Global Privacy Protocol (GPP) has the objective to enable all parties in the digital advertising chain to comply with regional privacy regulations more easily. It is a transport layer that communicates user consent and preference signaling throughout the digital supply chain that supports existing consent formats and is flexible enough to support new markets with unique needs. IAB Tech Lab stewards the development of these technical specifications.
 
 ### Value for Users
 
@@ -40,7 +40,7 @@ Learn more at [iabtechlab.com](iabtechlab.com).
 IAB Tech Lab's Global Privacy Working Group members provide contributions to this repository. Participants in the Global Privacy Working group must be members of IAB Tech Lab. Technical Governance for the project is provided by the IAB Tech Lab Privacy & Rearc Commit Group.
 License
 
-Global Privacy Platform technical specifications governed by the IAB Tech Lab is licensed under a Creative Commons Attribution 3.0 License. To view a copy of this license, visit [creativecommons.org/licenses/by/3.0/](creativecommons.org/licenses/by/3.0/) or write to Creative Commons, 171 Second Street, Suite 300, San Francisco, CA 94105, USA.
+Global Privacy Protocol technical specifications governed by the IAB Tech Lab is licensed under a Creative Commons Attribution 3.0 License. To view a copy of this license, visit [creativecommons.org/licenses/by/3.0/](creativecommons.org/licenses/by/3.0/) or write to Creative Commons, 171 Second Street, Suite 300, San Francisco, CA 94105, USA.
 
 **Disclaimer**
 

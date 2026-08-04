@@ -23,15 +23,15 @@
 
 
 ## Introduction
-This is one of the IAB Tech Lab Global Privacy Platform Specifications. It defines the API for Consent Management Platforms (CMPs). The CMP API is the interface a CMP provides to callers (web and in-app) to access information regarding the privacy preferences disclosed and obtained from the end user by the CMP. Both required functionality that the CMP must provide and optional features are described.
+This is one of the IAB Tech Lab's Global Privacy Protocol Specifications. It defines the API for Consent Management Platforms (CMPs). The CMP API is the interface a CMP provides to callers (web and in-app) to access information regarding the privacy preferences disclosed and obtained from the end user by the CMP. Both required functionality that the CMP must provide and optional features are described.
 
 
-### About the Global Privacy Platform
-The Global Privacy Platform (GPP) enables advertisers, publishers and technology vendors in the digital advertising industry to adapt to regulatory demands across markets. It is a single protocol designed to streamline transmitting privacy, consent, and consumer choice signals from sites and apps to ad tech providers. IAB Tech Lab stewards the development of these technical specifications.
+### About the Global Privacy Protocol
+The Global Privacy Protocol (GPP) enables advertisers, publishers and technology vendors in the digital advertising industry to adapt to regulatory demands across markets. It is a single protocol designed to streamline transmitting privacy, consent, and consumer choice signals from sites and apps to ad tech providers. IAB Tech Lab stewards the development of these technical specifications.
 
 
 ### License
-Global Privacy Platform technical specifications governed by the IAB Tech Lab is licensed under a Creative Commons Attribution 3.0 License. To view a copy of this license, visit creativecommons.org/licenses/by/3.0/ or write to Creative Commons, 171 Second Street, Suite 300, San Francisco, CA 94105, USA.
+Global Privacy Protocol technical specifications governed by the IAB Tech Lab is licensed under a Creative Commons Attribution 3.0 License. To view a copy of this license, visit creativecommons.org/licenses/by/3.0/ or write to Creative Commons, 171 Second Street, Suite 300, San Francisco, CA 94105, USA.
 
 
 **Disclaimer**
@@ -54,7 +54,7 @@ Consent Management Platforms (CMPs) provide a user interface to establish transp
 
 Using the API, scripts may obtain the GPP String payload and the information it contains, which is ready to use without having to understand how to “unpack” the payload format. This makes it easy to make immediate data processing decisions based on the returned information.
 
-This API allows for accessing signals across legislations, regulations, and standards. It provides a common interface that can be used to access underlying APIs such as the [IAB TCF](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20Consent%20string%20and%20vendor%20list%20formats%20v2.md) and [USPrivacy](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/USP%20API.md).
+This API allows for accessing signals across legislations, regulations, and standards. It provides a common interface that can be used to access underlying APIs such as the [IAB TCF](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20Consent%20string%20and%20vendor%20list%20formats%20v2.md).
 
 #### API Prefixes
 
@@ -71,7 +71,7 @@ Example API prefixes:
   </tr>
   <tr>
 	  <td>IAB TCF1 (EU)</td>    
-<td><code>tcfeuv1 (no longer used)</code></td>
+<td><code>tcfeuv1</code> (no longer used)</td>
   </tr>
   <tr>
 	  <td>IAB TCF v2 (EU)</td>    
@@ -83,7 +83,11 @@ Example API prefixes:
    </tr>
   <tr>
 	  <td>IAB CCPA/USP v1</td>    
-<td><code>uspv1</code></td>
+<td><code>uspv1</code> (deprecated)</td>
+  </tr>
+  <tr>
+	  <td>California Privacy </td>    
+<td><code>usca</code></td>
   </tr>
 </table>
 
@@ -114,16 +118,16 @@ Requirements for the interface:
 All CMPs must support all generic commands. Generic commands are commands that can be used independent of [section specifications](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/SectionInformation.md). All generic commands must always be executed immediately without any asynchronous logic and call the supplied callback function immediately. The generic commands are: [‘ping’](#ping), [‘addEventListener’](#addeventlistener), [‘removeEventListener’](#removeeventlistener), [‘hasSection’](#hassection), [‘getSection’](#getsection), and [‘getField’](#getfield). 
 
 
-### What is CMP ID?
+### What is a CMP ID?
 
 
 Regional section policy writers may require CMPs to register to operate within the policies for that section. In these cases, CMP IDs must be used if the CMP has an ID. For CMPs that are not registered, a value of 1 must be used by string creators who do not have a CMP ID and are not using a commercially available CMP.
 
 **Examples:**
 
-Publisher A looking to create a GPP string that will contain the section for the US National approach must use 1 as value for CMP ID since the MSPA does not have CMP registration requirements.
+Publisher A looking to create a GPP string that will contain the section for the MSPA US National approach must use 1 as value for CMP ID since the MSPA does not have CMP registration requirements.
 
-Publisher B looking to create a GPP string that will contain sections for the US National approach or the TCF EU must register themselves or work with a registered CMP and use the assigned CMP ID in accordance with the TCF Policies.
+Publisher B looking to create a GPP string that will contain sections for the MSPA US National approach or the TCF EU must register themselves or work with a registered CMP and use the assigned CMP ID in accordance with the TCF Policies.
 
 ________
 #### `ping` <a name="ping"></a>
@@ -176,36 +180,17 @@ cmpDisplayStatus: String, // possible values: hidden, visible, disabled
 
 signalStatus : String, // possible values: not ready, ready
 
-// List of supported APIs (section ids and prefix strings).
-// Example: ["2:tcfeuv2","6:uspv1"] 
-supportedAPIs : Array of string,
+supportedAPIs : Array of string, // List of supported APIs (section ids and prefix strings). Example: ["2:tcfeuv2","6:uspv1"] 
 
-// IAB assigned CMP ID, may be 0 during stub/loading. Refer the above CMP ID section for additional information.
-cmpId : Number,
+cmpId : Number, // IAB assigned CMP ID, may be 0 during stub/loading. Refer the above CMP ID section for additional information.
 
 sectionList : Array of Number, // may be empty during loading of the CMP
 
-// Section ID considered to be in force for this transaction.
-// In most cases, this field should have a single section ID. In rare occasions where such a single section ID
-// can not be determined, the field may contain up to 2 values. During the transition period which ends on
-// September 30, 2023, the legacy USPrivacy section may be determined as applicable along with another US section.
-// In this case, the field may contain up to 3 values where one of the values is 6, representing the
-// legacy USPrivacy section. The value can be 0 or a Section ID specified by the Publisher / Advertiser, during
-// stub / load.
-// When no section is applicable, the value will be [-1].
-applicableSections: Array of Number,
+applicableSections: Array of Number, // Section ID considered to be in force for this transaction. In most cases, this field should have a single section ID. In rare occasions where such a single section ID can not be determined, the field may contain up to 2 values. During the transition period which ends on September 30, 2023, the legacy USPrivacy section may be determined as applicable along with another US section. In this case, the field may contain up to 3 values where one of the values is 6, representing the legacy USPrivacy section. The value can be 0 or a Section ID specified by the Publisher / Advertiser, during stub / load. When no section is applicable, the value will be [-1].
 
-gppString: String // the complete encoded GPP string, may be empty during CMP load
+gppString: String, // the complete encoded GPP string, may be empty during CMP load
 
-// The parsedSections property represents an object of all parsed sections of the gppString property that are supported
-// by the API on this page (see supportedAPIs property). The object contains one property for each supported API with
-// the name of the API as the property name and the value as a parsed representation of this section with exactly the
-// same return as the getSection command, which may include subsections. If a section is supported but not represented
-// in the gppString, it is omitted in the parsedSections object.
-// Please refer to each section's spec for the exact field names and data types in JavaScript. The sections here should
-// be consistent with the GPP string, not placeholder values.
-parsedSections: Object
-
+parsedSections: Object // The parsedSections property represents an object of all parsed sections of the gppString property that are supported by the API on this page (see supportedAPIs property). The object contains one property for each supported API with the name of the API as the property name and the value as a parsed representation of this section with exactly the same return as the getSection command, which may include subsections. If a section is supported but not represented in the gppString, it is omitted in the parsedSections object. Please refer to each section's spec for the exact field names and data types in JavaScript. The sections here should be consistent with the GPP string, not placeholder values.
 }
 
 ```
@@ -407,27 +392,27 @@ A call to the `addEventListener` command must always trigger an immediate call t
   <tr>
     <td><code>listenerRegistered</code></td>
     <td>boolean</td>
-    <td>Only used within the return object to addEventListener command. The data property signals whether the event listener was registered successfully. If data equals true, a listenerId must be sent, otherwise the listenerId must be 0 (zero).</td>
+    <td>Only used within the return object to <code>addEventListener</code> command. The data property signals whether the event listener was registered successfully. If data equals <code>true</code>, a <code>listenerId</code> must be sent, otherwise the <code>listenerId</code> must be <code>0</code> (zero).</td>
   </tr>
   <tr>
     <td><code>listenerRemoved</code></td>
     <td>boolean</td>
-    <td>Only used within the return object to removeEventListener command. The data property signals whether the event listener was successfully removed.</td>
+    <td>Only used within the return object to <code>removeEventListener</code> command. The data property signals whether the event listener was successfully removed.</td>
   </tr>
   <tr>
     <td><code>cmpStatus</code></td>
     <td>string</td>
-    <td>Event is called whenever the status of the CMP changes (e.g. the CMP has finished loading). The data property will contain the new status (e.g. “loaded”)</td>
+    <td>Event is called whenever the status of the CMP changes (e.g. the CMP has finished loading). The data property will contain the new status (e.g. <code>loaded</code>)</td>
   </tr>
   <tr>
     <td><code>cmpDisplayStatus</code></td>
     <td>string</td>
-    <td>Event is called whenever the display status of the CMP changes (e.g. the CMP shows the consent layer). The data property will contain the new display status (e.g. “visible”). Note that this is only applicable when a consent layer is displayed.</td>
+    <td>Event is called whenever the display status of the CMP changes (e.g. the CMP shows the consent layer). The data property will contain the new display status (e.g. <code>visible</code>). Note that this is only applicable when a consent layer is displayed.</td>
     </tr>
     <tr>
     <td><code>signalStatus</code></td>
     <td>string</td>
-    <td>Event is called whenever the signalStatus changes. The data property will contain the new signalStatus value.
+    <td>Event is called whenever the <code>signalStatus</code> changes. The data property will contain the new <code>signalStatus</code> value.
    </td>
     </tr>
   <tr>
@@ -441,15 +426,15 @@ A call to the `addEventListener` command must always trigger an immediate call t
     <td>Event is called whenever the status or content of a section changes (e.g. consent is obtained). The data property will indicate the name (API prefix) of the changed section.</td>
    </tr>
   <tr>
-    <td><code>[API.prefix] or [API-prefix].[Eventname]</code></td>
+    <td><code>[API.prefix]</code> or <code>[API-prefix].[Eventname]</code></td>
     <td>mixed</td>
-    <td>Event is called by the CMP depending on the specific API needs (e.g. IAB TCF EU may specify different events than IAB USP). If the API defines different event types, these can be used by combining API-prefix and eventname, If the API does not specify different event types (e.g. in IAB TCF v2.0), the API-prefix is used as name. The data property will contain mixed data depending on API.</td>
+    <td>Event is called by the CMP depending on the specific API needs (e.g. IAB TCF EU may specify different events than MSPA US National Section). If the API defines different event types, these can be used by combining API-prefix and eventname, If the API does not specify different event types (e.g. in IAB TCF v2.0), the API-prefix is used as name. The data property will contain mixed data depending on API.</td>
      </td>
      </td>
   </tr>
 </table>
 
-The “signalStatus” event shall always be the first (if applicable) and last in a chain of events being fired by the CMP. 
+The `signalStatus` event shall always be the first (if applicable) and last in a chain of events being fired by the CMP. 
 
 A CMP **must** send all relevant events and it **must** send them in a specific order so that listeners (e.g. vendors) can understand when a task is completed. Whenever the CMP starts to change or is about to change any of the existing sections or is processing user input for an existing GPP string, it **must always** first set "signalStatus" to "not ready" and fire the corresponding event. It can then perform the tasks (e.g. change the sections along with firing the section change events). Only when all tasks are completed, the CMP can set the "signalStatus" to "ready" and fire the corresponding event.
 
@@ -471,43 +456,43 @@ The following example illustrates the  events that are fired, and the other orde
 </tr>
 <tr>
 <td>2</td>
-<td>listenerRegistered</td>
+<td><code>listenerRegistered</code></td>
 <td>&nbsp;</td>
 <td>CMP has registered the event listener. Event is immediately fired after registering.</td>
 </tr>
 <tr>
 <td>3</td>
-<td>cmpStatus</td>
-<td>loaded</td>
-<td>CMP is now loaded. Event is fired with name=cmpStatus and data=loaded.</td>
+<td><code>cmpStatus</code></td>
+<td><code>loaded</code></td>
+<td>CMP is now loaded. Event is fired with name = cmpStatus and data = loaded.</td>
 </tr>
 <tr>
 <td>4</td>
-<td>cmpDisplayStatus</td>
-<td>visible</td>
-<td>CMP now displays the consent layer. Event is fired with name=cmpDisplayStatus and data = visible</td>
+<td><code>cmpDisplayStatus</code></td>
+<td><code>visible</code></td>
+<td>CMP now displays the consent layer. Event is fired with name=cmpDisplayStatus and data = visible.</td>
 </tr>
 <tr>
 <td>5</td>
-<td colspan="3"><em>User makes their choices and clicks on accept or reject or save</em></td>
+<td colspan="3"><em>User makes their choices and clicks on accept or reject or save.</em></td>
 </tr>
 <tr>
 <td>6</td>
-<td>cmpDisplayStatus</td>
-<td>hidden</td>
-<td>CMP closed the consent layer and processes user input. Event is fired with name=cmpDisplayStatus and data=hidden</td>
+<td><code>cmpDisplayStatus</code></td>
+<td><code>hidden</code></td>
+<td>CMP closed the consent layer and processes user input. Event is fired with name=cmpDisplayStatus and data = hidden.</td>
 </tr>
 <tr>
 <td>7</td>
-<td>sectionChange</td>
-<td>tcfcav1</td>
-<td>CMP changes the section based on user input. Event is fired with name=sectionChange and data=tcfcav1 Note: if multiple sections are present, multiple sectionChange events may occur after another</td>
+<td><code>sectionChange</code></td>
+<td><code>tcfcav1</code></td>
+<td>CMP changes the section based on user input. Event is fired with name = sectionChange and data = tcfcav1. Note: if multiple sections are present, multiple <code>sectionChange</code> events may occur one after another.</td>
 </tr>
 <tr>
 <td>8</td>
-<td>signalStatus</td>
-<td>ready</td>
-<td>CMP is done with the processing, vendors can use the data. Event is fired with name=signalStatus and data = ready.</td>
+<td><code>signalStatus</code></td>
+<td><code>ready</code></td>
+<td>CMP is done with the processing, vendors can use the data. Event is fired with name = signalStatus and data = ready.</td>
 </tr>
 </tbody>
 </table>
@@ -531,21 +516,21 @@ The following example illustrates the events that are fired, and the order in wh
 </tr>
 <tr>
 <td>2</td>
-<td>listenerRegistered</td>
+<td><code>listenerRegistered</code></td>
 <td>&nbsp;</td>
 <td>CMP has registered the event listener. Event is immediately fired after registering.</td>
 </tr>
 <tr>
 <td>3</td>
-<td>cmpStatus</td>
-<td>loaded</td>
-<td>CMP is now loaded. Event is fired with name=cmpStatus and data=loaded</td>
+<td><code>cmpStatus</code></td>
+<td><code>loaded</code></td>
+<td>CMP is now loaded. Event is fired with name = cmpStatus and data = loaded</td>
 </tr>
 <tr>
 <td>4</td>
-<td>signalStatus</td>
-<td>ready</td>
-<td>CMP is done with the processing (consent information is loaded, no further processing needed, consent layer will not be shown), vendors can use the data. Event is fired with name=signalStatus and data=ready</td>
+<td><code>signalStatus</code></td>
+<td><code>ready</code></td>
+<td>CMP is done with the processing (consent information is loaded, no further processing needed, consent layer will not be shown), vendors can use the data. Event is fired with name = signalStatus and data = ready</td>
 </tr>
 <tr>
 <td>5</td>
@@ -553,15 +538,15 @@ The following example illustrates the events that are fired, and the order in wh
 </tr>
 <tr>
 <td>6</td>
-<td>signalStatus</td>
-<td>Not ready</td>
-<td>CMP is expecting changes, vendors should not use the data but wait and pause their processing. Event is fired with name=signalStatus and data=not ready</td>
+<td><code>signalStatus</code.</td>
+<td><code>Not ready</code></td>
+<td>CMP is expecting changes, vendors should not use the data but wait and pause their processing. Event is fired with name = signalStatus and data = not ready</td>
 </tr>
 <tr>
 <td>7</td>
-<td>cmpDisplayStatus</td>
-<td>visible</td>
-<td>CMP now displays the consent layer. Event is fired with name=cmpDisplayStatus and data=visible</td>
+<td><code>cmpDisplayStatus</code></td>
+<td><code>visible</code></td>
+<td>CMP now displays the consent layer. Event is fired with name = cmpDisplayStatus and data = visible</td>
 </tr>
 <tr>
 <td>8</td>
@@ -571,21 +556,21 @@ The following example illustrates the events that are fired, and the order in wh
 </tr>
 <tr>
 <td>9</td>
-<td>cmpDisplayStatus</td>
-<td>hidden</td>
-<td>CMP closed the consent layer and processes user input. Event is fired with name=cmpDisplayStatus and data=hidden</td>
+<td><code>cmpDisplayStatus</code></td>
+<td><code>hidden</code></td>
+<td>CMP closed the consent layer and processes user input. Event is fired with name = cmpDisplayStatus and data = hidden</td>
 </tr>
 <tr>
 <td>10</td>
-<td>sectionChange</td>
-<td>tcfcav1</td>
-<td>CMP changes the section based on user input. Event is fired with name=sectionChange and data=tcfcav1 Note: If multiple sections are present, multiple sectionChange events may occur after another</td>
+<td><code>sectionChange</code></td>
+<td><code>tcfcav1</code></td>
+<td>CMP changes the section based on user input. Event is fired with name = sectionChange and data = tcfcav1 Note: If multiple sections are present, multiple <code>sectionChange</code> events may occur after another</td>
 </tr>
 <tr>
 <td>11</td>
-<td>signalStatus</td>
-<td>ready</td>
-<td>CMP is done with the processing, vendors can use the data. Event is fired with name=signalStatus and data=ready</td>
+<td><code>signalStatus</code></td>
+<td><code>ready</code></td>
+<td>CMP is done with the processing, vendors can use the data. Event is fired with name = signalStatus and data = ready</td>
 </tr>
 </tbody>
 </table>
@@ -789,16 +774,16 @@ Using the IAB TCF CA v1.0 as an example, the `getVendorList`command would be def
 ```
 getVendorList
 
-Command:     iabtcfcav1.getVendorList
+Command:     tcfcav1.getVendorList
 
 Callback:    function (gvl: GlobalVendorList, success: boolean)
 
 Parameter:   (optional) int or string
 
-Calling with this command and a valid vendorListVersion parameter shall return a GlobalVendorList object to the callback function….
+Calling with this command and a valid vendorListVersion parameter shall return a GlobalVendorList object to the callback function.
 ```
 
-In the example above, a call to` __gpp (‘iabtcfcav1.getVendorList’,myfunction)` will be treated in the same way as a call to `__tcfapi(‘getVendorList’,2,myfunction)` by the CMP.
+In the example above, a call to` __gpp (‘tcfcav1.getVendorList’,myfunction)` will be treated in the same way as a call to `__tcfapi(‘getVendorList’,2,myfunction)` by the CMP.
 
 
 __________
