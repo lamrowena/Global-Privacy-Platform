@@ -1,4 +1,4 @@
-# Global Privacy Platform String
+# Global Privacy Protocol String
 
 ### Version History
 
@@ -10,14 +10,14 @@
     <td><strong>Comments</strong></td>
   </tr>
   <tr>
-	  <td>Sept 28, 2022</td>    
-<td><code>1.0</code></td>
-    <td>Published final public version</td>
-  </tr>
-	<tr>
 	  <td>Nov 3, 2023</td>    
 <td><code>1.0</code></td>
     <td>Added clarifications to encoding mechanism, fixed encoded header examples</td>
+  </tr>
+  <tr>
+	  <td>Sept 28, 2022</td>    
+<td><code>1.0</code></td>
+    <td>Published final public version</td>
   </tr>
 </table>
 
@@ -25,29 +25,29 @@
 
 ## Introduction
 
-This document is one of the IAB Tech Lab Global Privacy Platform Specifications. It defines the technical implementation of the structure and encoding for a Global Privacy Platform String (GPP String). 
+This document is one of the IAB Tech Lab Global Privacy Protocol Specifications. It defines the technical implementation of the structure and encoding for a Global Privacy Protocol String (GPP String). 
 
 
 ### Additional Reading and Referenced Documents
 
-- [Consent Management Platform JS API](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Core/CMP%20API%20Specification.md)
+- [Consent Management Protocol JS API](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Core/CMP%20API%20Specification.md)
 - [GPP Sections](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/tree/main/Sections)
 
 
 ### Updates to Standards Needed to Support GPP
 
-Updates were made to existing IAB Tech Lab standards to support the Global Privacy Platform. These updates are based on industry consensus, driven by relevant IAB Tech Lab working groups, including the Global Privacy Working Group and Programmatic Supply Chain Working Group. They include:
+Updates were made to existing IAB Tech Lab standards to support the Global Privacy Protocol. These updates are based on industry consensus, driven by relevant IAB Tech Lab working groups, including the Global Privacy Working Group and Programmatic Supply Chain Working Group. They include:
 
 
 **OpenRTB Attributes:** 
 
 GPP assumes the use of OpenRTB 2.x. 
 
-- Like other existing privacy signals (TCF and USPrivacy), the GPP string is also able to be transported via OpenRTB. This will be included in the Regs object in the November 2022 release. See this [document](https://github.com/InteractiveAdvertisingBureau/openrtb/tree/master/extensions/community_extensions) for approved design prior to release.
+- Like other existing privacy signals (TCF and USPrivacy), the GPP string is also able to be transported via OpenRTB. This is included in the Regs object. See the [OpenRTB 2.x specifications](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md#objectregs) for details.
 
-### About the Global Privacy Platform
+### About the Global Privacy Protocol
 
-The Global Privacy Platform (GPP) enables advertisers, publishers and technology vendors in the digital advertising industry to adapt to regulatory demands across markets. It is a single protocol designed to streamline transmitting privacy, consent, and consumer choice signals from sites and apps to ad tech providers. IAB Tech Lab stewards the development of these technical specifications.
+The Global Privacy Protocol (GPP) enables advertisers, publishers and technology vendors in the digital advertising industry to adapt to regulatory demands across markets. It is a single protocol designed to streamline transmitting privacy, consent, and consumer choice signals from sites and apps to ad tech providers. IAB Tech Lab stewards the development of these technical specifications.
 
 
 ### About IAB Tech Lab
@@ -62,14 +62,14 @@ IAB Tech Lab's Global Privacy Working Group members provide contributions to thi
 
 **License**
 
-Global Privacy Platform technical specifications governed by the IAB Tech Lab is licensed under a Creative Commons Attribution 3.0 License. To view a copy of this license, visit [creativecommons.org/licenses/by/3.0/](creativecommons.org/licenses/by/3.0/) or write to Creative Commons, 171 Second Street, Suite 300, San Francisco, CA 94105, USA.
+Global Privacy Protocol technical specifications governed by the IAB Tech Lab is licensed under a Creative Commons Attribution 3.0 License. To view a copy of this license, visit [creativecommons.org/licenses/by/3.0/](creativecommons.org/licenses/by/3.0/) or write to Creative Commons, 171 Second Street, Suite 300, San Francisco, CA 94105, USA.
 
 **Disclaimer**
 
 THE STANDARDS, THE SPECIFICATIONS, THE MEASUREMENT GUIDELINES, AND ANY OTHER MATERIALS OR SERVICES PROVIDED TO OR USED BY YOU HEREUNDER (THE “PRODUCTS AND SERVICES”) ARE PROVIDED “AS IS” AND “AS AVAILABLE,” AND IAB TECHNOLOGY LABORATORY, INC. (“TECH LAB”) MAKES NO WARRANTY WITH RESPECT TO THE SAME AND HEREBY DISCLAIMS ANY AND ALL EXPRESS, IMPLIED, OR STATUTORY WARRANTIES, INCLUDING, WITHOUT LIMITATION, ANY WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AVAILABILITY, ERROR-FREE OR UNINTERRUPTED OPERATION, AND ANY WARRANTIES ARISING FROM A COURSE OF DEALING, COURSE OF PERFORMANCE, OR USAGE OF TRADE. TO THE EXTENT THAT TECH LAB MAY NOT AS A MATTER OF APPLICABLE LAW DISCLAIM ANY IMPLIED WARRANTY, THE SCOPE AND DURATION OF SUCH WARRANTY WILL BE THE MINIMUM PERMITTED UNDER SUCH LAW. THE PRODUCTS AND SERVICES DO NOT CONSTITUTE BUSINESS OR LEGAL ADVICE. TECH LAB DOES NOT WARRANT THAT THE PRODUCTS AND SERVICES PROVIDED TO OR USED BY YOU HEREUNDER SHALL CAUSE YOU AND/OR YOUR PRODUCTS OR SERVICES TO BE IN COMPLIANCE WITH ANY APPLICABLE LAWS, REGULATIONS, OR SELF-REGULATORY FRAMEWORKS, AND YOU ARE SOLELY RESPONSIBLE FOR COMPLIANCE WITH THE SAME.
 
 
-## About the Global Privacy Platform String
+## About the Global Privacy Protocol String
 
 In the GPP, a GPP String is used to encapsulate relevant details about transparency and consumer choice and encoded as it applies for each [supported regional or other signal](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/tree/main/Sections). This document specifies how that string must be formatted and how it must be used.
 
@@ -190,7 +190,7 @@ The following details provide information on creating, storing, and managing a G
 <li>For sections that use a different encoding mechanism, ensure that the data is websafe and does not include the “~” (tilde) character or the "." (dot) character.</li>
 </ul>
 </li>
-<li><b>Create header section.</b> See examples of the <a href="https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/consent-string-clarifications/Core/Consent%20String%20Specification.md?pr=%2FInteractiveAdvertisingBureau%2FGlobal-Privacy-Platform%2Fpull%2F83#header-examples">header section</a> below.
+<li><b>Create header section.</b> See examples of the <a href="https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Core/Consent%20String%20Specification.md#header-examples">header section</a> below.
 	<ol type=1>
 		<li>Create a bit representation of the GPP header section including all Section IDs for discrete sections in a sorted order.</li>
 		<li>Add padding (0) on the right to get to a total bit length that is a multiple of 6 bits.</li>
@@ -879,12 +879,12 @@ Using the same cases as in the [Header Examples](#header) above, the following e
 
 ## Signal Integrity
 
-As part of the first version of GPP, signal integrity will be accomplished in concert with the [Accountability Platform.](https://iabtechlab.com/wp-content/uploads/2021/03/iabtechlab_accountability_platform_rfc_2021_march.pdf) The Global Privacy Working Group is committed to introducing signal integrity technology for GPP in future versions. 
+As part of the first version of GPP, signal integrity will be accomplished in concert with the [Accountability Platform.](https://github.com/InteractiveAdvertisingBureau/Accountability-Platform) The Global Privacy Working Group is committed to introducing signal integrity technology for GPP in future versions. 
 
 
 ## GPP Identifier <a name="gppstring"></a>
 
-Callers needing to consume privacy signals with business entity level disclosures across multiple markets need the ability to do so with the assurance that business entities do not have duplicate or overlapping IDs. There are already existing vendor lists (see note with non-exhaustive list below) on which the same business entity may appear. Frameworks that are supported by the GPP must retrieve their IDs from the IAB Tech Lab Transparency Center. This will ensure the creation of concurrent non-overlapping vendor IDs. 
+Callers needing to consume privacy signals with business entity level disclosures across multiple markets need the ability to do so with the assurance that business entities do not have duplicate or overlapping IDs. There are already existing vendor lists (see note with non-exhaustive list below) on which the same business entity may appear. Frameworks that are supported by the GPP must retrieve their IDs from the IAB Tech Lab Tools Portal. This will ensure the creation of concurrent non-overlapping vendor IDs. 
 
 
 Registration to participate in a specific framework is governed by the local jurisdiction Policy and T&Cs, who would also be responsible for enforcement and compliance. 
@@ -898,7 +898,7 @@ Vendors should decide which framework signals they plan to participate in to det
 Vendors looking to register for the TCF EU GVL or TCF Canada GVL should do so on this [registration portal](https://register.consensu.org/). Additional details on the Global Vendor List can be found in the [TCF v2 Consent string and vendor list format](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20Consent%20string%20and%20vendor%20list%20formats%20v2.md#the-global-vendor-list) specification.
 
 
-Vendors looking to sign the MSPA may do so at the [Transparency Center](https://tools.iabtechlab.com/lspa).  
+Vendors looking to sign the MSPA may do so at the [IAB Tech Lab Tools Portal](https://tools.iabtechlab.com/mspa).  
 
 
 ### I’m a vendor and I already have an GVL ID, is there anything that I need to do?
@@ -918,13 +918,13 @@ Since the pixel is in an `<img>` tag without the ability to execute Javascript, 
 - `${GPP_STRING_XXXXX}` where `XXXXX` is the numeric GPP ID of the vendor receiving the string. - The applicable GPP Section ID must also be inserted, where the ${GPP_SID} macro is present.
 
 
-Vendors not registered to participate in any framework supported by the Global Privacy Platform (e.g. MSPA, TCF CA, TCF EU) may pass ${GPP_STRING} without the GPP ID. Vendors who are registered to participate and have a GPP ID must include it in the macro. When vendors that are callers–who have the option to expand on the macros–are deciding how to proceed with vendor callees not participating in a GPP supported framework (e.g. MSPA, TCF CA, TCF EU), vendors should reference each framework's policy.
+Vendors not registered to participate in any framework supported by the Global Privacy Protocol (e.g. MSPA, TCF CA, TCF EU) may pass ${GPP_STRING} without the GPP ID. Vendors who are registered to participate and have a GPP ID must include it in the macro. When vendors that are callers–who have the option to expand on the macros–are deciding how to proceed with vendor callees not participating in a GPP supported framework (e.g. MSPA, TCF CA, TCF EU), vendors should reference each framework's policy.
 
-**Example when ${GPP_STRING} rather than ${GPP_STRING_XXXXX}may be used:**
+**Example when `${GPP_STRING}` rather than `${GPP_STRING_XXXXX}` may be used:**
 
-The GPP String includes one of the US States sections or the US National section, but the string creator has indicated that the transaction is not covered by the MSPA. Vendors who do not participate in the MSPA may request the string, but may not have a GPP ID. In this case, ${GPP_STRING} may be used.
+The GPP String includes one of the US States sections or the MSPA US National section, but the string creator has indicated that the transaction is not covered by the MSPA. Vendors who do not participate in the MSPA may request the string, but may not have a GPP ID. In this case, `${GPP_STRING}` may be used.
 
-**Example when ${GPP_STRING_XXXXX}is used:**
+**Example when `${GPP_STRING_XXXXX}` is used:**
 
 Vendor A with ID 123 to receive a GPP String which includes the EU TCF v2 as applicable section, an image URL must include two key-value pairs with the URL parameters and macros `gpp=${GPP_STRING_123}` and `gpp_sid=${GPP_SID}`.
 
@@ -960,22 +960,21 @@ The supported URL parameters and the corresponding macros are defined below:
     <td><strong>Representation in URL</strong></td>
   </tr>
   <tr>
-	  <td>gpp</td>    
-<td><code>GPP_STRING_XXXXX (XXXXX is numeric GPP ID - the ID of the vendor on the GPP ID List who is expecting this URL call)</code></td>
-    <td>&gpp=${GPP_STRING_123}</td>
+	  <td><code>gpp</code></td>    
+<td><code>GPP_STRING_XXXXX</code> (<code>XXXXX</code> is the numeric GPP ID - the ID of the vendor on the GPP ID List who is expecting this URL call)</td>
+    <td><code>&gpp=${GPP_STRING_123}</code></td>
     </tr>
   <tr>
-	  <td>gpp_sid</td>    
+	  <td><code>gpp_sid</code></td>    
 <td><code>GPP_SID</code></td>
-    <td>&gpp_sid=${GPP_SID}</td>
+    <td><code>&gpp_sid=${GPP_SID}</code></td>
    </td>
    </td>
   </tr>
 </table>
 
 
-
-The service making the call must replace the macros with appropriate values described in the table below. For macro ${GPP_STRING_XXXXX}, the service making the call must also check that the macro name contains a valid GPP ID before replacing the macro. 
+The service making the call must replace the macros with appropriate values described in the table below. For macro `${GPP_STRING_XXXXX}`, the service making the call must also check that the macro name contains a valid GPP ID before replacing the macro. 
 
 
 The creator of the URL should ensure these parameters are added only once, and are passed to services which are expecting them and can handle them properly.
@@ -987,14 +986,14 @@ The creator of the URL should ensure these parameters are added only once, and a
     <td><strong>Purpose</strong></td>
   </tr>
   <tr>
-	  <td>${GPP_STRING_XXXXX}</td>    
-<td><code>Url-safe base64-encoded GPP string.</code></td>
+	  <td><code>${GPP_STRING_XXXXX}</code></td>    
+<td>Url-safe base64-encoded GPP string.</td>
     <td>Encodes the GPP string, as obtained from the CMP JS API or OpenRTB</td>
     </tr>
   <tr>
-	  <td>${GPP_SID}</td>    
-<td><code>The section ID(s) in force for the current transaction. In most cases, this field should have a single section ID. In rare occasions where such a single section ID can not be determined, the field may contain up to 2 values, separated by a comma.</code></td>
-    <td>As the GPP String may encode user preferences for multiple jurisdictions, this field indicates to the callee which section of the string is considered “in force” by the caller. This should match the value returned by the CMP API (see below).</td>
+	  <td><code>${GPP_SID}</code></td>    
+<td>The section ID(s) in force for the current transaction. In most cases, this field should have a single section ID. In rare occasions where such a single section ID can not be determined, the field may contain up to 2 values, separated by a comma.</td>
+    <td>As the GPP String may encode user preferences for multiple jurisdictions, this field indicates to the callee which section of the string is considered “in force” by the caller. This should match the value returned by the CMP API.</td>
    </td>
    </td>
   </tr>
